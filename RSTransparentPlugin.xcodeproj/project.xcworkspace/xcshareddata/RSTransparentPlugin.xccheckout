@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1D20790B-F622-49AF-A0A7-651E27E1F1AC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RSTransparentPlugin</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9AF9A4D4-9439-4385-A534-4264E376BCE6</key>
+		<string>https://github.com/RetVal/RSTransparentPlugin.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RSTransparentPlugin.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9AF9A4D4-9439-4385-A534-4264E376BCE6</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/RetVal/RSTransparentPlugin.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9AF9A4D4-9439-4385-A534-4264E376BCE6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9AF9A4D4-9439-4385-A534-4264E376BCE6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RSTransparentPlugin</string>
+		</dict>
+	</array>
+</dict>
+</plist>
