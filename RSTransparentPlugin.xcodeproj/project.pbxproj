@@ -37,6 +37,8 @@
 		418AAD341855A63300AE8785 /* RSTransparentPluginSettingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSTransparentPluginSettingWindowController.xib; sourceTree = "<group>"; };
 		418AAD361855A74000AE8785 /* RSTransparentPluginSettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTransparentPluginSettingWindowController.h; sourceTree = "<group>"; };
 		418AAD371855A74000AE8785 /* RSTransparentPluginSettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTransparentPluginSettingWindowController.m; sourceTree = "<group>"; };
+		41A6541A18586F7000EEB8EF /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demo.png; sourceTree = "<group>"; };
+		41A6541C18586F8E00EEB8EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		41AB92E51855CC2C00929C27 /* NSWindow+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+Blur.h"; sourceTree = "<group>"; };
 		41AB92E61855CC2C00929C27 /* NSWindow+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Blur.m"; sourceTree = "<group>"; };
 		41B53E5E18570C500045FB9D /* RSTransparentSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTransparentSetting.h; sourceTree = "<group>"; };
@@ -115,6 +117,8 @@
 		416855CE18367B9200794087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				41A6541C18586F8E00EEB8EF /* menu.png */,
+				41A6541A18586F7000EEB8EF /* demo.png */,
 				417ACFA818521D4E001444A3 /* xprivates.h */,
 				416855CF18367B9200794087 /* RSTransparentPlugin-Info.plist */,
 				416855D018367B9200794087 /* InfoPlist.strings */,
