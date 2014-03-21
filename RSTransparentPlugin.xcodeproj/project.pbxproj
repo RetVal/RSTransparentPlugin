@@ -299,7 +299,6 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/SourceCache/RT/temp/RSTransparentPlugin,
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
@@ -321,7 +320,6 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/SourceCache/RT/temp/RSTransparentPlugin,
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
 					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);

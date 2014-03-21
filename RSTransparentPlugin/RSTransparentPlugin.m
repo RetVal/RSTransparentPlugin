@@ -28,7 +28,8 @@ static NSView_drawRectFuncPtr __IMP_DVTSourceCodeEditor_drawRect__ = nil;
 
 static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect dirtyRect) {
     id setting = [RSTransparentSetting sharedSetting];
-    [[[setting backgroundColor] colorWithAlphaComponent:[setting backgroundAlphaValue]] set];
+    NSColor *color = [[setting backgroundColor] colorWithAlphaComponent:[setting backgroundAlphaValue]];
+    [color set];
     NSRectFillUsingOperation(dirtyRect, NSCompositeCopy);
     __IMP_DVTSourceCodeEditor_drawRect__(self, _cmd, dirtyRect);
 }
@@ -63,8 +64,6 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     }
     return self;
 }
-
-// Sample Action, for menu item:
 
 - (NSString *)_dumpSourceCodeEditor {
     NSMutableString *description = [[NSMutableString alloc] init];
@@ -106,8 +105,6 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     if (currentEditorIsSourceCodeEditor) {
         [[editor textView] setDrawsBackground:NO];
         [[editor textView] setNeedsDisplay:YES];
-        if ([[editor textView] drawsBackground] == YES) NSLog(@"为何这么屌");
-        [[editor textView] setDrawsBackground:NO];
         view = [editor textView];
     } else {
         view = editor;
@@ -155,15 +152,15 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
 {
     if (!__IMP_DVTSourceCodeEditor_drawRect__)
         __IMP_DVTSourceCodeEditor_drawRect__ = (NSView_drawRectFuncPtr)class_replaceMethod(NSClassFromString(@"DVTSourceTextView"),
-                                                                                 @selector(drawRect:),
-                                                                                 (IMP)__RS_IMP_DVTSourceCodeEditor_drawRect__,
-                                                                                 nil);
+                                                                                           @selector(drawRect:),
+                                                                                           (IMP)__RS_IMP_DVTSourceCodeEditor_drawRect__,
+                                                                                           nil);
     if (__IMP_DVTSourceCodeEditor_drawRect__) NSLog(@"DVTSourceTextView hooked");
     NSArray *windows = [self windowsForBlur];
     [self applyBlur:[_setting windowBlurValue] forWindows:windows enumBlock:nil];
 }
 
-- (void)debug {
+- (void)showSettingWindowController {
     if (!_settingWindowController)
         _settingWindowController = [[RSTransparentPluginSettingWindowController alloc] initWithWindowNibName:@"RSTransparentPluginSettingWindowController"];
     [_settingWindowController showWindow:_settingWindowController];
@@ -182,7 +179,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
         [[menuItem submenu] addItem:actionMenuItem];
         
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"HLM Setting" action:@selector(debug) keyEquivalent:@"+"];
+        actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"HLM Setting" action:@selector(showSettingWindowController) keyEquivalent:@"+"];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
     }
@@ -218,6 +215,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     [_setting removeObserver:self forKeyPath:@"backgroundAlphaValue"];
     [_setting removeObserver:self forKeyPath:@"windowBlurValue"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [NSArchiver archivedDataWithRootObject:nil];
 }
 
 @end
