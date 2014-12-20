@@ -13,7 +13,7 @@
 @end
 
 typedef int CGSConnectionID;
-static const CGSConnectionID kCGSNullConnectionID = 0;
+static const CGSConnectionID kCGSNullConnectionID __unused = 0;
 typedef NSUInteger CGSWindowID;
 
 

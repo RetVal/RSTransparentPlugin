@@ -3,7 +3,7 @@
 //  RSTransparentPlugin
 //
 //  Created by Closure on 11/15/13.
-//    Copyright (c) 2013 RetVal. All rights reserved.
+//  Copyright (c) 2013 RetVal. All rights reserved.
 //
 
 #import "RSTransparentPlugin.h"
@@ -148,13 +148,10 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     return nil;
 }
 
-- (void)sourceCodeEditorBlured
+- (void)sourceCodeEditorBlurred
 {
     if (!__IMP_DVTSourceCodeEditor_drawRect__)
-        __IMP_DVTSourceCodeEditor_drawRect__ = (NSView_drawRectFuncPtr)class_replaceMethod(NSClassFromString(@"DVTSourceTextView"),
-                                                                                           @selector(drawRect:),
-                                                                                           (IMP)__RS_IMP_DVTSourceCodeEditor_drawRect__,
-                                                                                           nil);
+        __IMP_DVTSourceCodeEditor_drawRect__ = (NSView_drawRectFuncPtr)class_replaceMethod(NSClassFromString(@"DVTSourceTextView"), @selector(drawRect:), (IMP)__RS_IMP_DVTSourceCodeEditor_drawRect__, nil);
     if (__IMP_DVTSourceCodeEditor_drawRect__) NSLog(@"DVTSourceTextView hooked");
     NSArray *windows = [self windowsForBlur];
     [self applyBlur:[_setting windowBlurValue] forWindows:windows enumBlock:nil];
@@ -204,7 +201,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
                 }
             }
         } else if (object == _setting && [keyPath isEqualToString:@"windowBlurValue"]) {
-            [self sourceCodeEditorBlured];
+            [self sourceCodeEditorBlurred];
         }
     }
 }
