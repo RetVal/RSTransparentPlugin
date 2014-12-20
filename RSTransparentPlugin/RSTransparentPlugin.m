@@ -171,7 +171,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Xcode"];
     if (menuItem) {
         [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"HLM(Closure)" action:@selector(sourceCodeEditorBlured) keyEquivalent:@"-"];
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"HLM(Closure)" action:@selector(sourceCodeEditorBlurred) keyEquivalent:@"-"];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
         
