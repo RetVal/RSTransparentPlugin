@@ -56,11 +56,13 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
 {
     if (self = [super init]) {
         self.bundle = plugin;
-        [self setupMenu];
-        _setting = [RSTransparentSetting sharedSetting];
-        [_setting addObserver:self forKeyPath:@"backgroundColor" options:0 context:nil];
-        [_setting addObserver:self forKeyPath:@"backgroundAlphaValue" options:0 context:nil];
-        [_setting addObserver:self forKeyPath:@"windowBlurValue" options:0 context:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self setupMenu];
+            _setting = [RSTransparentSetting sharedSetting];
+            [_setting addObserver:self forKeyPath:@"backgroundColor" options:0 context:nil];
+            [_setting addObserver:self forKeyPath:@"backgroundAlphaValue" options:0 context:nil];
+            [_setting addObserver:self forKeyPath:@"windowBlurValue" options:0 context:nil];
+        });
     }
     return self;
 }
@@ -179,6 +181,8 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
         actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"HLM Setting" action:@selector(showSettingWindowController) keyEquivalent:@"+"];
         [actionMenuItem setTarget:self];
         [[menuItem submenu] addItem:actionMenuItem];
+    } else {
+        NSLog(@"RSTransparentPlugin: install menu failed");
     }
 }
 
