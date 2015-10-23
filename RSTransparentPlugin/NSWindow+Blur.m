@@ -133,9 +133,7 @@ CG_EXTERN CGError CGSSetOtherUniversalConnection(CGSConnectionID cid, CGSConnect
 CG_EXTERN CGError CGSSetWindowBackgroundBlurRadius(CGSConnectionID cid, CGSWindowID wid, NSUInteger blur);
 
 @implementation NSWindow (Blur)
-+ (void)load {
-    NSLog(@"%@ - %@", [self class], NSStringFromSelector(_cmd));
-}
+
 static void *GetFunctionByName(NSString *library, char *func) {
     CFBundleRef bundle;
     CFURLRef bundleURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef) library, kCFURLPOSIXPathStyle, true);

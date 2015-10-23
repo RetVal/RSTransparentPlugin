@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.retval.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -31,6 +31,7 @@
 		<string>9F75337B-21B4-4ADC-B558-F9CADF7073A7</string>
 		<string>AABB7188-E14E-4433-AD3B-5CD791EAD9A3</string>
 		<string>7FDF5C7A-131F-4ABB-9EDC-8C5F8F0B8A90</string>
+		<string>7265231C-39B4-402C-89E1-16167C4CC990</string>
 	</array>
 	<key>XC4Compatible</key>
 	<true/>

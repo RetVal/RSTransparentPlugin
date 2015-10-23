@@ -15,9 +15,6 @@
 @end
 
 @implementation AppleXcode
-+ (void)load {
-    NSLog(@"%@ - %@", [self class], NSStringFromSelector(_cmd));
-}
 
 + (void)pluginDidLoad:(NSBundle *)plugin {
     [RSTransparentPlugin pluginDidLoad:plugin];

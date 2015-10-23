@@ -36,10 +36,6 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
 
 @implementation RSTransparentPlugin
 
-+ (void)load {
-    NSLog(@"%@ - %@", [self class], NSStringFromSelector(_cmd));
-}
-
 + (void)pluginDidLoad:(NSBundle *)plugin
 {
     static id sharedPlugin = nil;

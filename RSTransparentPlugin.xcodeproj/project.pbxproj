@@ -162,7 +162,7 @@
 		416855BE18367B9200794087 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = RetVal;
 			};
 			buildConfigurationList = 416855C118367B9200794087 /* Build configuration list for PBXProject "RSTransparentPlugin" */;
@@ -238,6 +238,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -306,6 +307,7 @@
 				GCC_PREFIX_HEADER = "RSTransparentPlugin/RSTransparentPlugin-Prefix.pch";
 				INFOPLIST_FILE = "RSTransparentPlugin/RSTransparentPlugin-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.retval.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
 			};
@@ -327,6 +329,7 @@
 				GCC_PREFIX_HEADER = "RSTransparentPlugin/RSTransparentPlugin-Prefix.pch";
 				INFOPLIST_FILE = "RSTransparentPlugin/RSTransparentPlugin-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.retval.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xcplugin;
 			};
