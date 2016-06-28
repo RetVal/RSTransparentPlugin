@@ -26,7 +26,14 @@ static RSTransparentPlugin *sharedPlugin;
 typedef void (*NSView_drawRectFuncPtr)(id self, SEL _cmd, NSRect dirtyRect);
 static NSView_drawRectFuncPtr __IMP_DVTSourceCodeEditor_drawRect__ = nil;
 
-static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect dirtyRect) {
+static void __RS_IMP_DVTSourceCodeEditor_drawRect__(NSTextView *self, SEL _cmd, NSRect dirtyRect) {
+//    [self lockFocus];
+//    NSImage *image = [[NSImage alloc] initWithContentsOfFile:[@"" stringByStandardizingPath]];
+////    [image drawInRect:[self frame] fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+//    NSRect rect = [self visibleRect];
+//    NSLog(@"%@", NSStringFromRect(rect));
+//    [image drawInRect:rect];
+//    [self unlockFocus];
     id setting = [RSTransparentSetting sharedSetting];
     NSColor *color = [[setting backgroundColor] colorWithAlphaComponent:[setting backgroundAlphaValue]];
     [color set];
@@ -36,8 +43,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
 
 @implementation RSTransparentPlugin
 
-+ (void)pluginDidLoad:(NSBundle *)plugin
-{
++ (void)pluginDidLoad:(NSBundle *)plugin {
     static id sharedPlugin = nil;
     static dispatch_once_t onceToken;
     NSString *currentApplicationName = [[NSBundle mainBundle] infoDictionary][@"CFBundleName"];
@@ -48,8 +54,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     }
 }
 
-- (id)initWithBundle:(NSBundle *)plugin
-{
+- (id)initWithBundle:(NSBundle *)plugin {
     if (self = [super init]) {
         self.bundle = plugin;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -68,7 +73,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     [description appendFormat:@"%@\n", NSStringFromSelector(_cmd)];
     NSArray *windows = [NSApp windows];
     [windows enumerateObjectsUsingBlock:^(NSWindow *window, NSUInteger idx, BOOL *stop) {
-        [description appendFormat:@"window = %@\n", window];
+        [description appendFormat:@"%@\n", [[window contentView] performSelector:@selector(_subtreeDescription)]];
     }];
     [self applyBlur:[_setting windowBlurValue] forIDEWorkspaceWindow:(IDEWorkspaceWindow *)[NSApp keyWindow] enumBlock:^(NSView *view) {
         if ([view respondsToSelector:@selector(drawsBackground)]) {
@@ -104,6 +109,7 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
         [[editor textView] setDrawsBackground:NO];
         [[editor textView] setNeedsDisplay:YES];
         view = [editor textView];
+//        [(NSTextView *)view setBackgroundColor:[NSColor colorWithPatternImage:[[NSImage alloc] initWithContentsOfFile:[@"~/Desktop/4.png" stringByStandardizingPath]]]];
     } else {
         view = editor;
         id cls = [view class];
@@ -148,10 +154,13 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
 
 - (void)sourceCodeEditorBlurred
 {
-    if (!__IMP_DVTSourceCodeEditor_drawRect__)
+    if (!__IMP_DVTSourceCodeEditor_drawRect__ && NSClassFromString(@"DVTSourceTextView")) {
         __IMP_DVTSourceCodeEditor_drawRect__ = (NSView_drawRectFuncPtr)class_replaceMethod(NSClassFromString(@"DVTSourceTextView"), @selector(drawRect:), (IMP)__RS_IMP_DVTSourceCodeEditor_drawRect__, nil);
+    }
     if (__IMP_DVTSourceCodeEditor_drawRect__) NSLog(@"DVTSourceTextView hooked");
+
     NSArray *windows = [self windowsForBlur];
+    NSLog(@"%@", [self _dumpSourceCodeEditor]);
     [self applyBlur:[_setting windowBlurValue] forWindows:windows enumBlock:nil];
 }
 
@@ -212,7 +221,6 @@ static void __RS_IMP_DVTSourceCodeEditor_drawRect__(id self, SEL _cmd, NSRect di
     [_setting removeObserver:self forKeyPath:@"backgroundAlphaValue"];
     [_setting removeObserver:self forKeyPath:@"windowBlurValue"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [NSArchiver archivedDataWithRootObject:nil];
 }
 
 @end

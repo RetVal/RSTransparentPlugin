@@ -19,4 +19,5 @@
 @property (assign, nonatomic) CGFloat colorAlpha;
 @property (assign, nonatomic) CGFloat windowAlpha;
 @property (assign, nonatomic) CGFloat windowBlur;
+@property (strong, nonatomic) NSString *imagePath;
 @end

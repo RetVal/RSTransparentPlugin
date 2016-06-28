@@ -18,6 +18,8 @@ static NSString * RSTransparentSettingRunMode = @"RSTransparentSettingRunMode";
 static NSString * RSTransparentSettingRootKey = @"RSTransparentSettingRootKey";
 static NSString * RSTransparentSettingFileName = @"RSTransparentSetting.plist";
 
+static NSString * RSTransparentPluginCachePath = @"~/Library/Caches/com.apple.dt.Xcode/Plugins/RSTransparentPlugin/";
+
 @interface RSTransparentSetting()
 {
     NSMutableDictionary *_settings;
@@ -36,7 +38,7 @@ static RSTransparentSetting *__sharedSetting = nil;
              RSTransparentSettingBackgroundColorAlpha: @(0.5),
              RSTransparentSettingBlur: @(20.0),
              RSTransparentSettingWindowAlpha: @(0.99999),
-             RSTransparentSettingLogPath: [@"~/Library/Caches/com.apple.dt.Xcode/Plugins/RSTransparentPlugin/" stringByStandardizingPath],
+             RSTransparentSettingLogPath: [RSTransparentPluginCachePath stringByStandardizingPath],
              RSTransparentSettingRunMode: @"RSPluginDefaultMode"};
 }
 
@@ -45,7 +47,7 @@ static RSTransparentSetting *__sharedSetting = nil;
 }
 
 - (void)loadSettingFromFileSystem {
-    NSString *settingPath = [@"~/Library/Caches/com.apple.dt.Xcode/Plugins/RSTransparentPlugin/" stringByStandardizingPath];
+    NSString *settingPath = [RSTransparentPluginCachePath stringByStandardizingPath];
     [[NSFileManager defaultManager] createDirectoryAtPath:settingPath withIntermediateDirectories:YES attributes:nil error:nil];
     NSMutableString *filePath = [settingPath mutableCopy];
     [filePath appendFormat:@"/%@", RSTransparentSettingFileName];
@@ -54,7 +56,7 @@ static RSTransparentSetting *__sharedSetting = nil;
 
 - (id)init {
     if (__sharedSetting) return __sharedSetting;
-    NSString *settingPath = [@"~/Library/Caches/com.apple.dt.Xcode/Plugins/RSTransparentPlugin/" stringByStandardizingPath];
+    NSString *settingPath = [RSTransparentPluginCachePath stringByStandardizingPath];
     [[NSFileManager defaultManager] createDirectoryAtPath:settingPath withIntermediateDirectories:YES attributes:nil error:nil];
     NSMutableString *filePath = [settingPath mutableCopy];
     [filePath appendFormat:@"/%@", RSTransparentSettingFileName];
@@ -74,7 +76,7 @@ static RSTransparentSetting *__sharedSetting = nil;
 }
 
 - (void)applicationWillTerminate:(NSNotification*)notification {
-    NSString *settingPath = [@"~/Library/Caches/com.apple.dt.Xcode/Plugins/RSTransparentPlugin/" stringByStandardizingPath];
+    NSString *settingPath = [RSTransparentPluginCachePath stringByStandardizingPath];
     [[NSFileManager defaultManager] createDirectoryAtPath:settingPath withIntermediateDirectories:YES attributes:nil error:nil];
     NSMutableString *filePath = [settingPath mutableCopy];
     [filePath appendFormat:@"/%@", RSTransparentSettingFileName];
